@@ -15,7 +15,7 @@ services:
     ports:
       - "80:80"
     environment:
-      - VITE_API_URL=https://contactbook-3iew.onrender.com/
+      - VITE_API_URL=https://contactbook-3iew.onrender.com/api
     depends_on:
       - backend
 
