@@ -1,0 +1,32 @@
+services:
+  backend:
+    build: ./backend
+    container_name: contact_backend
+    ports:
+      - "3000:3000"
+    environment:
+      - URL=mongodb+srv://atharvadudhe125:atharva123@cluster0.d1xkjld.mongodb.net/
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./frontend
+    container_name: contact_frontend
+    ports:
+      - "80:80"
+    environment:
+      - VITE_API_URL=http://localhost:3000
+    depends_on:
+      - backend
+
+  mongo:
+    image: mongo:6
+    container_name: contact_mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
